@@ -1,0 +1,13 @@
+== Superfeedr Publisher Callback ==
+
+This sample apps allows publisher to control subscriptions to their "Superfeedr hub":http://superfeedr.com/publisher.
+
+Deploy this app to "AppEngine":http://code.google.com/appengine/ and implement the business rule that will allow you to decide whether a given susbcriber can access a feed or not.
+
+In your hubs's settings, enter the root url of the deployed app. 
+
+You can also very well use your own application.
+
+* If you want to allow subscription, just return 204.
+* If you don't want to allow the subscription, please return 401. Also, please include any reason for the refusal to in the body of the response (as text). We will forward that to the subscriber. The message can also include requirements for subscription to your hub, like the inclusion of an API key, contact information... etc. We will forward to your callback url any additional parameter submitted by the subscriber.
+* If the URL is not accessible, or if you don't return a 204 code, we will refuse any subscription to it.
